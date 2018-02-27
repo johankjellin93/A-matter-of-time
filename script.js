@@ -4,12 +4,19 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     var c = document.getElementById('current-time');
-
-    var d = new Date();
     
-    var hours = d.getHours();
-    if (hours > 12) hours -= - 12;
+    setInterval(updateTime, 1000);
 
-    c.innerHTML = hours + ':' + d.getMinutes();
+    function updateTime() {
+        var d = new Date();
+
+        var hours = d.getHours();
+        if (hours > 12) hours -= - 12;
+
+        var sep = ':';
+        if (d.getSeconds() % 2 === 1) sep = ' ';
+
+        c.innerHTML = hours + sep + d.getMinutes();
+    }
 });
 })();
